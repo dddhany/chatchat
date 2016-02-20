@@ -39,6 +39,14 @@ class LoginViewController: UIViewController {
         self.performSegueWithIdentifier("LoginToChat", sender: nil) // 3
     }
   }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        super.prepareForSegue(segue, sender: sender)
+        let navVc = segue.destinationViewController as! UINavigationController // 1
+        let chatVc = navVc.viewControllers.first as! ChatViewController // 2
+        chatVc.senderId = ref.authData.uid // 3
+        chatVc.senderDisplayName = "" // 4
+    }
   
 }
 
